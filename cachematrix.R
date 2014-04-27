@@ -9,6 +9,8 @@
 # 2) get - retrieves the matrix stored earlier
 # 3) setinverse - stores the inverse of the matrix (caching it for later use)
 # 4) getinverse - retrieves the inverse of the matrix if it has already been cached, otherwise returns null
+# When called with different matrices, each's environment is different, and they will be cached
+# separately.
 
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
@@ -30,7 +32,8 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-# cacheSolve 
+# cacheSolve checks for a cached inverse and returns it if it exists. If not, it takes
+# the matrix, inverts it, caches it using makeCacheMatrix$setinverse and returns it.
 
 cacheSolve <- function(x, ...) {
   # Use the getinverse function to check whether this matrix's inverse is cached.
